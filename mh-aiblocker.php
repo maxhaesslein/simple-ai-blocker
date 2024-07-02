@@ -14,6 +14,11 @@ namespace MH\AIBlocker;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 
+include_once( 'inc/ip.php' );
+include_once( 'inc/options-page.php' );
+include_once( 'inc/settings.php' );
+
+
 function get_plugin_version(){
 
 	if( ! function_exists('get_plugin_data') ){
