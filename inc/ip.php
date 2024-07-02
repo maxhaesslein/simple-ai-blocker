@@ -65,4 +65,3 @@ function is_ip_in_cidr_ranges($user_ip, $cidr_ranges) {
 
 	return false; // IP is not within any of the CIDR ranges
 }
-

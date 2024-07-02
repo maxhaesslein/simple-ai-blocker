@@ -5,6 +5,14 @@ namespace MH\AIBlocker;
 if( ! defined('ABSPATH') ) exit;
 
 
+function add_settings_link( $links ) {
+	$settings_link = '<a href="options-general.php?page=mh_aiblocker_settings">Settings</a>';
+	array_unshift( $links, $settings_link );
+	return $links;
+}
+add_filter( 'plugin_action_links_mh-aiblocker/mh-aiblocker.php', 'MH\AIBlocker\add_settings_link' );
+
+
 function menu_item() {
 
 	add_submenu_page(
@@ -15,7 +23,6 @@ function menu_item() {
 		'mh_aiblocker_settings',
 		'MH\AIBlocker\options_page',
 	);
-
 
 }
 add_action( 'admin_menu', 'MH\AIBlocker\menu_item' );
