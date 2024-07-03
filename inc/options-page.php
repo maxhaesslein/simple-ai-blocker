@@ -99,14 +99,6 @@ function options_page(){
 			
 			submit_button();
 
-			// DEBUG:
-			echo '<hr>';
-			echo '<h2>Debug-Information:</h2>';
-			echo '<strong>User IP:</strong>';
-			echo '<pre>'; var_dump(get_user_ip()); echo '</pre>'; // DEBUG
-			echo '<strong>IP Ranges:</strong>';
-			echo '<pre>'; var_dump(get_ip_ranges()); echo '</pre>'; // DEBUG
-
 			?>
 		</form>
 
