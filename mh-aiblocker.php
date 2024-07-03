@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: MH AI Blocker
-Description: TODO
+Description: Block AI Crawlers directly via their IP addresses
 Version: 0.1.0-dev1
 Author: Max Häßlein
 Author URI: https://www.maxhaesslein.de
