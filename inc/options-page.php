@@ -33,19 +33,19 @@ function register_settings() {
 	add_settings_section(
 		'mh_aiblocker_settings',
 		'Settings',
-		false,
+		function(){ echo '<p>This plugins blocks known AI crawlers directly via their IP addresses. You can additionally use a plugin that blocks AI crawlers via a robots.txt to get more protection.</p>'; },
 		'mh_aiblocker_settings'
 	);
 
 	add_settings_field(
 		'mh_aiblocker_settings_active',
-		'IP Ranges to Block',
+		'Status',
 		function(){
 
 			$active = get_option('mh_aiblocker_settings_active');
 
 			?>
-			<label><input type="checkbox" name="mh_aiblocker_settings_active"<?php if( $active ) echo ' checked'; ?>> activate blocking</label>
+			<label><input type="checkbox" name="mh_aiblocker_settings_active"<?php if( $active ) echo ' checked'; ?>> Blocking active</label>
 			<?php
 		},
 		'mh_aiblocker_settings',
@@ -105,6 +105,7 @@ function options_page(){
 	<div class="wrap">
 
 		<h1>MH AI Blocker Settings</h1>
+
 
 		<form method="post" action="<?= esc_url( admin_url('options.php') ) ?>">
 			<?php

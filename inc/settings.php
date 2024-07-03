@@ -39,7 +39,7 @@ function get_default_ip_ranges() {
 			'18.208.251.246/32',
 			'34.230.5.59/32',
 			'18.207.114.171/32',
-			'54.221.7.250/32";',
+			'54.221.7.250/32',
 		],
 
 		// https://docs.yourgpt.ai/whitelisting-ai-crawler
