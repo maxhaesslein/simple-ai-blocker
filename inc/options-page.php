@@ -61,6 +61,7 @@ function register_settings() {
 		function(){
 			?>
 			<label><textarea name="mh_aiblocker_settings_ipranges" autocomplete="off" autocorrect="off" cols="40" rows="28" spellcheck="false" wrap="off"><?php echo esc_attr( get_option('mh_aiblocker_settings_ipranges') ); ?></textarea></label>
+			<p><small>one IP address per line; can be a single IP address, or a IP range in CIDR notation with suffix. IPv4 only.</small></p>
 			<p><a href="#" onclick="mh_aiblocker_settings_ipranges_reset()">Reset to default</a></p>
 			<script>
 			function mh_aiblocker_settings_ipranges_reset(){
