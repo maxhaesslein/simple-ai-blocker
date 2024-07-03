@@ -5,10 +5,61 @@ namespace MH\AIBlocker;
 if( ! defined('ABSPATH') ) exit;
 
 
-# GBT Bot ranges: https://openai.com/gptbot-ranges.txt and https://platform.openai.com/docs/plugins/bot
-# Perplexity Bot: https://web.archive.org/web/20240616105916/https://docs.perplexity.ai/docs/perplexitybot and https://web.archive.org/web/20240615195252/https://www.perplexity.ai/perplexitybot.json
 function get_default_ip_ranges() {
-	return "# GPTbot\n52.230.152.0/24\n52.233.106.0/24\n\n# ChatGPT-User bot\n40.84.180.224/28\n13.65.240.240/28\n23.98.142.176/28\n40.84.180.224/28\n13.65.240.240/28\n20.97.189.96/28\n20.161.75.208/28\n52.225.75.208/28\n52.156.77.144/28\n40.84.221.208/28\n40.84.221.224/28\n40.84.180.64/28\n\n# Perplexity AI Bot\n54.90.207.250/32\n23.22.208.105/32\n54.242.1.13/32\n18.208.251.246/32\n34.230.5.59/32\n18.207.114.171/32\n54.221.7.250/32";
+
+	$bots = [
+
+		// https://openai.com/gptbot.json
+		'GPTbot' => [
+			'52.230.152.0/24',
+			'52.233.106.0/24',
+		],
+
+		// https://platform.openai.com/docs/plugins/bot
+		'ChatGPT-User bot' => [
+			'40.84.180.224/28',
+			'13.65.240.240/28',
+			'23.98.142.176/28',
+			'40.84.180.224/28',
+			'13.65.240.240/28',
+			'20.97.189.96/28',
+			'20.161.75.208/28',
+			'52.225.75.208/28',
+			'52.156.77.144/28',
+			'40.84.221.208/28',
+			'40.84.221.224/28',
+			'40.84.180.64/28',
+		],
+
+		// https://www.perplexity.ai/perplexitybot.json
+		'Perplexity AI Bot' => [
+			'54.90.207.250/32',
+			'23.22.208.105/32',
+			'54.242.1.13/32',
+			'18.208.251.246/32',
+			'34.230.5.59/32',
+			'18.207.114.171/32',
+			'54.221.7.250/32";',
+		],
+
+		// https://docs.yourgpt.ai/whitelisting-ai-crawler
+		'YourGPT' => [
+			'13.53.253.0/24',
+		],
+		
+	];
+
+	$return_string = "";
+
+	foreach( $bots as $name => $ips ) {
+		if( $return_string ) $return_string .= "\n\n";
+		$return_string .= "# ".$name;
+		foreach( $ips as $ip ) {
+			$return_string .= "\n".$ip;
+		}
+	}
+
+	return $return_string;
 }
 
 
