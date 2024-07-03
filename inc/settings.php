@@ -12,6 +12,11 @@ function get_default_ip_ranges() {
 }
 
 
+function get_blocking_state(){
+	return get_option('mh_aiblocker_settings_active');
+}
+
+
 function get_ip_ranges() {
 
 	$settings = get_option('mh_aiblocker_settings_ipranges');

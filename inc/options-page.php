@@ -38,6 +38,24 @@ function register_settings() {
 	);
 
 	add_settings_field(
+		'mh_aiblocker_settings_active',
+		'IP Ranges to Block',
+		function(){
+
+			$active = get_option('mh_aiblocker_settings_active');
+
+			?>
+			<label><input type="checkbox" name="mh_aiblocker_settings_active"<?php if( $active ) echo ' checked'; ?>> activate blocking</label>
+			<?php
+		},
+		'mh_aiblocker_settings',
+		'mh_aiblocker_settings',
+	);
+	register_setting( 'mh_aiblocker_settings', 'mh_aiblocker_settings_active', [
+		'default' => true
+	] );
+
+	add_settings_field(
 		'mh_aiblocker_settings_ipranges',
 		'IP Ranges to Block',
 		function(){

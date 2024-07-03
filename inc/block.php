@@ -7,6 +7,10 @@ if( ! defined('ABSPATH') ) exit;
 
 function block() {
 
+	$blocking_active = get_blocking_state();
+
+	if( ! $blocking_active ) return;
+
 	$user_ip = get_user_ip();
 	$cidr_ranges = get_ip_ranges();
 
