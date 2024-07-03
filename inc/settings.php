@@ -17,6 +17,19 @@ function get_blocking_state(){
 }
 
 
+function get_server_ip_origin(){
+	$origins = get_option('mh_aiblocker_settings_origin');
+
+	if( ! $origins ) return [];
+
+	$origins = explode(',', $origins);
+
+	$origins = array_map('trim', $origins);
+
+	return $origins;
+}
+
+
 function get_ip_ranges() {
 
 	$settings = get_option('mh_aiblocker_settings_ipranges');

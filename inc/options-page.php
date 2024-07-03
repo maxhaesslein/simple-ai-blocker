@@ -79,6 +79,22 @@ function register_settings() {
 		// TODO: validate ip ranges on save
 	] );
 
+	add_settings_field(
+		'mh_aiblocker_settings_origin',
+		'Server Variable',
+		function(){
+			?>
+			<label><input type="text" name="mh_aiblocker_settings_origin" spellcheck="false" autocomplete="off" autocorrect="off" value="<?php echo esc_attr( get_option('mh_aiblocker_settings_origin') ); ?>"></label>
+			<p><small>Specify the origins you trust in order of priority, separated by commas. We strongly recommend that you do not use anything other than <code>REMOTE_ADDR</code> since other origins can be easily faked. Examples: <code>HTTP_X_FORWARDED_FOR</code>, <code>HTTP_CF_CONNECTING_IP</code>, <code>HTTP_X_SUCURI_CLIENTIP</code>. Default: <code>REMOTE_ADDR</code></small></p>
+			<?php
+		},
+		'mh_aiblocker_settings',
+		'mh_aiblocker_settings',
+	);
+	register_setting( 'mh_aiblocker_settings', 'mh_aiblocker_settings_origin', [
+		'default' => 'REMOTE_ADDR'
+	] );
+
 }
 add_action( 'admin_init', 'MH\AIBlocker\register_settings' );
 

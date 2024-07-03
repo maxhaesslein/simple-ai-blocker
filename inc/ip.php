@@ -6,7 +6,14 @@ if( ! defined('ABSPATH') ) exit;
 
 
 function get_user_ip(){
-	return $_SERVER['REMOTE_ADDR'];
+
+	$origins = get_server_ip_origin();
+
+	foreach( $origins as $origin ) {
+		if( ! empty($_SERVER[$origin]) ) return $_SERVER[$origin];
+	}
+
+	return $_SERVER['REMOTE_ADDR']; // default fallback
 }
 
 
