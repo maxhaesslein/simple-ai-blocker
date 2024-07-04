@@ -5,15 +5,49 @@ namespace MH\AIBlocker;
 if( ! defined('ABSPATH') ) exit;
 
 
+function get_default_useragents() {
+
+	$useragents = [
+		'Bytespider',
+		'Bytedance',
+		'GPTBot',
+		'ClaudeBot',
+		'ImagesiftBot',
+		'CCBot',
+		'ChatGPT-User',
+		'omgili',
+		'Diffbot',
+		'Claude-Web',
+		'PerplexityBot',
+	];
+
+	return implode( "\n", $useragents );
+}
+
+
+function get_default_json() {
+
+	$urls = [
+		'GPTbot' => 'https://openai.com/gptbot.json',
+		'Perplexity AI Bot' => 'https://www.perplexity.ai/perplexitybot.json',
+	];
+
+
+	$return_string = "";
+
+	foreach( $urls as $name => $url ) {
+		if( $return_string ) $return_string .= "\n\n";
+		$return_string .= "# ".$name;
+		$return_string .= "\n".$url;
+	}
+
+	return $return_string;
+}
+
+
 function get_default_ip_ranges() {
 
 	$bots = [
-
-		// https://openai.com/gptbot.json
-		'GPTbot' => [
-			'52.230.152.0/24',
-			'52.233.106.0/24',
-		],
 
 		// https://platform.openai.com/docs/plugins/bot
 		'ChatGPT-User bot' => [
@@ -31,20 +65,13 @@ function get_default_ip_ranges() {
 			'40.84.180.64/28',
 		],
 
-		// https://www.perplexity.ai/perplexitybot.json
-		'Perplexity AI Bot' => [
-			'54.90.207.250/32',
-			'23.22.208.105/32',
-			'54.242.1.13/32',
-			'18.208.251.246/32',
-			'34.230.5.59/32',
-			'18.207.114.171/32',
-			'54.221.7.250/32',
-		],
-
 		// https://docs.yourgpt.ai/whitelisting-ai-crawler
 		'YourGPT' => [
 			'13.53.253.0/24',
+		],
+
+		'Bytespider' => [
+			'220.243.188.0/23 ',
 		],
 		
 	];
@@ -69,6 +96,7 @@ function get_blocking_state(){
 
 
 function get_server_ip_origin(){
+
 	$origins = get_option('mh_aiblocker_settings_origin');
 
 	if( ! $origins ) return [];

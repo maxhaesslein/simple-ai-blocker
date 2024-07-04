@@ -56,11 +56,36 @@ function register_settings() {
 	] );
 
 	add_settings_field(
+		'mh_aiblocker_settings_json',
+		'JSON Links with IP Ranges',
+		function(){
+			?>
+			<label><textarea name="mh_aiblocker_settings_json" autocomplete="off" autocorrect="off" cols="40" rows="10" spellcheck="false" wrap="off"><?php echo esc_attr( get_option('mh_aiblocker_settings_json') ); ?></textarea></label>
+			<p><small>one link to an json endpoint per line.</small></p>
+			<p><a href="#" onclick="mh_aiblocker_settings_json_reset()">Reset to default</a></p>
+			<script>
+			function mh_aiblocker_settings_json_reset(){
+				var textarea = document.querySelector('textarea[name="mh_aiblocker_settings_json"]');
+				textarea.value = '<?= str_replace("\n", '\n', get_default_json()) ?>';
+			};
+			</script>
+			<?php
+		},
+		'mh_aiblocker_settings',
+		'mh_aiblocker_settings',
+	);
+	register_setting( 'mh_aiblocker_settings', 'mh_aiblocker_settings_json', [
+		'default' => get_default_json(),
+		// TODO: validate urls on save
+		// TODO: refresh apis on save
+	] );
+
+	add_settings_field(
 		'mh_aiblocker_settings_ipranges',
 		'IP Ranges to Block',
 		function(){
 			?>
-			<label><textarea name="mh_aiblocker_settings_ipranges" autocomplete="off" autocorrect="off" cols="40" rows="28" spellcheck="false" wrap="off"><?php echo esc_attr( get_option('mh_aiblocker_settings_ipranges') ); ?></textarea></label>
+			<label><textarea name="mh_aiblocker_settings_ipranges" autocomplete="off" autocorrect="off" cols="40" rows="10" spellcheck="false" wrap="off"><?php echo esc_attr( get_option('mh_aiblocker_settings_ipranges') ); ?></textarea></label>
 			<p><small>one IP address per line; can be a single IP address, or a IP range in CIDR notation with suffix. IPv4 only.</small></p>
 			<p><a href="#" onclick="mh_aiblocker_settings_ipranges_reset()">Reset to default</a></p>
 			<script>
@@ -77,6 +102,29 @@ function register_settings() {
 	register_setting( 'mh_aiblocker_settings', 'mh_aiblocker_settings_ipranges', [
 		'default' => get_default_ip_ranges(),
 		// TODO: validate ip ranges on save
+	] );
+
+	add_settings_field(
+		'mh_aiblocker_settings_useragents',
+		'User-Agents to Block',
+		function(){
+			?>
+			<label><textarea name="mh_aiblocker_settings_useragents" autocomplete="off" autocorrect="off" cols="40" rows="10" spellcheck="false" wrap="off"><?php echo esc_attr( get_option('mh_aiblocker_settings_useragents') ); ?></textarea></label>
+			<p><small>one user agent per line.</small></p>
+			<p><a href="#" onclick="mh_aiblocker_settings_useragents_reset()">Reset to default</a></p>
+			<script>
+			function mh_aiblocker_settings_useragents_reset(){
+				var textarea = document.querySelector('textarea[name="mh_aiblocker_settings_useragents"]');
+				textarea.value = '<?= str_replace("\n", '\n', get_default_useragents()) ?>';
+			};
+			</script>
+			<?php
+		},
+		'mh_aiblocker_settings',
+		'mh_aiblocker_settings',
+	);
+	register_setting( 'mh_aiblocker_settings', 'mh_aiblocker_settings_useragents', [
+		'default' => get_default_useragents(),
 	] );
 
 	add_settings_field(
