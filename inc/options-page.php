@@ -77,7 +77,6 @@ function register_settings() {
 	register_setting( 'mh_aiblocker_settings', 'mh_aiblocker_settings_json', [
 		'default' => get_default_json(),
 		'sanitize_callback' => 'MH\AIBlocker\json_save',
-		// TODO: validate urls on save
 	] );
 
 	add_settings_field(
@@ -129,7 +128,7 @@ function register_settings() {
 	);
 	register_setting( 'mh_aiblocker_settings', 'mh_aiblocker_settings_ipranges', [
 		'default' => get_default_ip_ranges(),
-		// TODO: validate ip ranges on save
+		'sanitize_callback' => 'MH\AIBlocker\ipranges_update'
 	] );
 
 	add_settings_field(
@@ -204,6 +203,26 @@ function json_schedule_update( $input ) {
 }
 
 
+function ipranges_update( $input ) {
+
+	$input = explode("\n", $input);
+
+	for( $i = 0; $i < count($input); $i++ ) {
+
+		$line = $input[$i];
+
+		if( ! empty($line) && ! str_starts_with($line, '#') ) {
+			$line = validate_cidr($line);
+		}
+
+		$input[$i] = $line;
+	}
+
+	$input = implode("\n", $input);
+	return $input;
+}
+
+
 function options_page(){
 
 	?>
@@ -222,10 +241,6 @@ function options_page(){
 
 			?>
 		</form>
-
-		<hr>
-		<h3>Debug Information:</h3>
-		<pre style="font-size: 10px; color: red;"><?php foreach( get_all_ip_ranges() as $ip_range ) echo $ip_range."\n"; ?></pre>
 
 	</div>
 	<?php

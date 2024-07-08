@@ -31,9 +31,11 @@ function validate_cidr( $cidr ) {
 
 	$explode = explode( '/', $cidr );
 
-	if( count($explode) < 1 ) return false;
+	if( count($explode) < 1 ) {
+		return false;
+	}
 
-	$ip = $explode[0];
+	$ip = trim($explode[0]);
 
 	if( count($explode) > 1 ) {
 		$mask = (int) $explode[1];
