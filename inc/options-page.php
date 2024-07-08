@@ -52,7 +52,7 @@ function register_settings() {
 		'mh_aiblocker_settings',
 	);
 	register_setting( 'mh_aiblocker_settings', 'mh_aiblocker_settings_active', [
-		'default' => true
+		'default' => false
 	] );
 
 	add_settings_field(
