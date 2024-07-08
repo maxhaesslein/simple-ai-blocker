@@ -81,6 +81,34 @@ function register_settings() {
 	] );
 
 	add_settings_field(
+		'mh_aiblocker_settings_json_schedule',
+		'JSON Update Schedule',
+		function(){
+			$schedule = get_option('mh_aiblocker_settings_json_schedule');
+			$allowed_schedules = get_allowed_json_cron_schedules();
+			?>
+			<label><select name="mh_aiblocker_settings_json_schedule">
+				<option value=""><?= __('disabled') ?></option>
+				<?php
+				foreach( $allowed_schedules as $allowed_schedule => $allowed_schedule_title ) {
+					?>
+					<option value="<?= $allowed_schedule ?>"<?php if( $schedule == $allowed_schedule ) echo ' selected'; ?>><?= $allowed_schedule_title ?></option>
+					<?php
+				}
+				?>
+			</select></label>
+			<p><small>automatically refresh the ip ranges from JSON links</small></p>
+			<?php
+		},
+		'mh_aiblocker_settings',
+		'mh_aiblocker_settings'
+	);
+	register_setting( 'mh_aiblocker_settings', 'mh_aiblocker_settings_json_schedule', [
+		'default' => '',
+		'sanitize_callback' => 'MH\AIBlocker\json_schedule_update'
+	] );
+
+	add_settings_field(
 		'mh_aiblocker_settings_ipranges',
 		'IP Ranges to Block',
 		function(){
@@ -163,6 +191,16 @@ function json_save( $value ) {
 	update_url_ip_ranges($urls);
 
 	return $value;
+}
+
+
+function json_schedule_update( $input ) {
+
+	$success = update_cron( $input );
+
+	if( ! $success ) return '';
+
+	return $input;
 }
 
 

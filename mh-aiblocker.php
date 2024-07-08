@@ -53,3 +53,6 @@ function get_plugin_url( $append_path = false ){
 
 	return $url;
 }
+
+
+register_deactivation_hook( __FILE__, 'MH\AIBlocker\remove_all_cronjobs' );
