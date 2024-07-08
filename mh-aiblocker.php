@@ -2,7 +2,7 @@
 /*
 Plugin Name: MH AI Blocker
 Description: Block AI Crawlers directly via their IP addresses
-Version: 0.1.0-dev1
+Version: 0.1.0
 Author: Max Häßlein
 Author URI: https://www.maxhaesslein.de
 Requires at least: 5.2
