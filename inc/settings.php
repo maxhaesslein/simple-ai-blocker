@@ -139,6 +139,23 @@ function get_server_ip_origin(){
 }
 
 
+function get_user_agents() {
+
+	$useragents = get_option('mh_aiblocker_settings_useragents');
+
+	if( ! $useragents ) return [];
+
+	$useragents = explode( "\n", $useragents );
+
+	$useragents = array_map( 'trim', $useragents );
+
+	$useragents = array_unique($useragents);
+	$useragents = array_filter($useragents); // remove empty lines
+
+	return $useragents;
+}
+
+
 function get_ip_ranges() {
 
 	$settings = get_option('mh_aiblocker_settings_ipranges');

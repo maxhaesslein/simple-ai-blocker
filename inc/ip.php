@@ -5,6 +5,14 @@ namespace MH\AIBlocker;
 if( ! defined('ABSPATH') ) exit;
 
 
+function get_user_agent() {
+	
+	if( empty($_SERVER['HTTP_USER_AGENT']) ) return false;
+
+	return $_SERVER['HTTP_USER_AGENT'];
+}
+
+
 function get_user_ip(){
 
 	$origins = get_server_ip_origin();
