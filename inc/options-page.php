@@ -104,7 +104,7 @@ function register_settings() {
 		'mh_aiblocker_settings'
 	);
 	register_setting( 'mh_aiblocker_settings', 'mh_aiblocker_settings_json_schedule', [
-		'default' => '',
+		'default' => 'weekly',
 		'sanitize_callback' => 'MH\AIBlocker\json_schedule_update'
 	] );
 
@@ -223,13 +223,9 @@ function options_page(){
 			?>
 		</form>
 
-<?php
-/*
 		<hr>
 		<h3>Debug Information:</h3>
 		<pre style="font-size: 10px; color: red;"><?php foreach( get_all_ip_ranges() as $ip_range ) echo $ip_range."\n"; ?></pre>
-*/
-?>
 
 	</div>
 	<?php

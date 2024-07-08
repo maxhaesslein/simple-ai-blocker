@@ -173,7 +173,9 @@ function get_ip_ranges() {
 		if( empty($setting) ) continue;
 		if( str_starts_with($setting, '#') ) continue;
 
-		if( ! validate_cidr($setting) ) continue;
+		$setting = validate_cidr($setting);
+
+		if( ! $setting ) return;
 
 		$ranges[] = $setting;
 

@@ -6,7 +6,7 @@ if( ! defined('ABSPATH') ) exit;
 
 
 function get_user_agent() {
-	
+
 	if( empty($_SERVER['HTTP_USER_AGENT']) ) return false;
 
 	return $_SERVER['HTTP_USER_AGENT'];
@@ -28,57 +28,57 @@ function get_user_ip(){
 function validate_cidr( $cidr ) {
 	
 	// TODO: also check IPv6 addresses
-	// TODO: also allow single IP addresses, without mask
 
-	// Regular expression to check the basic format of CIDR notation
-	if( ! preg_match( '/^([0-9]{1,3}\.){3}[0-9]{1,3}\/([0-9]|[1-2][0-9]|3[0-2])$/', $cidr, $matches ) ) {
+	$explode = explode( '/', $cidr );
+
+	if( count($explode) < 1 ) return false;
+
+	$ip = $explode[0];
+
+	if( count($explode) > 1 ) {
+		$mask = (int) $explode[1];
+	} else {
+		$mask = 32; // default to one ip address, if nothing is provided
+	}
+
+	if( ! preg_match( '/^([0-9]{1,3}\.){3}[0-9]{1,3}$/', $ip, $matches ) ) {
 		return false;
 	}
 
-	// Split the CIDR into IP address and subnet mask
-	list( $ip, $mask ) = explode( '/', $cidr );
-
-	// Validate the IP address
 	if( ! filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) ) {
 		return false;
 	}
 
-	// Validate the subnet mask (it should be an integer between 0 and 32)
-	$mask = (int)$mask;
 	if( $mask < 0 || $mask > 32 ) {
 		return false;
 	}
 
-	return true;
+	// return sanitized cidr
+	return $ip.'/'.$mask;
 }
 
 function is_ip_in_cidr_ranges($user_ip, $cidr_ranges) {
 
 	// TODO: also check IPv6 addresses
-	// TODO: also allow single IP addresses, without mask
 
-	// Convert user's IP address to long integer
 	$user_ip_long = ip2long($user_ip);
 	if ($user_ip_long === false) {
-		return false; // Invalid IP address
+		return false;
 	}
 
-	// Iterate through each CIDR range
 	foreach ($cidr_ranges as $cidr) {
 		list($subnet, $mask) = explode('/', $cidr);
 
-		// Convert subnet to long integer and calculate network address
 		$subnet_long = ip2long($subnet);
 		$mask_long = -1 << (32 - $mask);
-		$subnet_long &= $mask_long; // Calculate network address
+		$subnet_long &= $mask_long;
 
-		// Check if user's IP is within the CIDR range
-		if (($user_ip_long & $mask_long) == ($subnet_long & $mask_long)) {
-			return true; // IP is within the CIDR range
+		if( ($user_ip_long & $mask_long) == ($subnet_long & $mask_long) ) {
+			return true;
 		}
 	}
 
-	return false; // IP is not within any of the CIDR ranges
+	return false;
 }
 
 
@@ -124,9 +124,17 @@ function get_remote_ip_ranges( $url ) {
 	$ip_ranges = [];
 
 	foreach( $data['prefixes'] as $prefix ) {
-		// TODO: validate ipv4 range
+		
 		// TODO: support ipv6 range
-		$ip_ranges[] = $prefix['ipv4Prefix'];
+
+		$ip_range = $prefix['ipv4Prefix'];
+
+		$ip_range = validate_cidr($ip_range);
+
+		if( ! $ip_range ) continue;
+
+		$ip_ranges[] = $ip_range;
+
 	}
 
 	return $ip_ranges;
