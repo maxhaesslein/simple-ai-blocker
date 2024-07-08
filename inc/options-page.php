@@ -129,7 +129,7 @@ function register_settings() {
 
 	add_settings_field(
 		'mh_aiblocker_settings_origin',
-		'Server Variable',
+		'IP Address Server Variable',
 		function(){
 			?>
 			<label><input type="text" name="mh_aiblocker_settings_origin" spellcheck="false" autocomplete="off" autocorrect="off" value="<?php echo esc_attr( get_option('mh_aiblocker_settings_origin') ); ?>"></label>
