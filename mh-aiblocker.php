@@ -15,6 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 
 include_once( 'inc/block.php' );
+include_once( 'inc/cron.php' );
 include_once( 'inc/ip.php' );
 include_once( 'inc/options-page.php' );
 include_once( 'inc/settings.php' );

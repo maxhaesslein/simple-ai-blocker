@@ -5,6 +5,11 @@ namespace MH\AIBlocker;
 if( ! defined('ABSPATH') ) exit;
 
 
+function get_default_origin() {
+	return 'REMOTE_ADDR';
+}
+
+
 function get_default_useragents() {
 
 	$useragents = [
@@ -95,6 +100,31 @@ function get_blocking_state(){
 }
 
 
+function get_json_urls( $string  = false ) {
+
+	if( ! $string ) $string = get_option('mh_aiblocker_settings_json');
+
+	if( ! $string ) return [];
+
+	$urls = [];
+
+	$list = explode("\n", $string);
+	
+	$list = array_map('trim', $list);
+
+	foreach( $list as $line ) {
+
+		if( empty($line) ) continue;
+		if( str_starts_with($line, '#') ) continue;
+
+		$urls[] = $line;
+
+	}
+
+	return $urls;
+}
+
+
 function get_server_ip_origin(){
 
 	$origins = get_option('mh_aiblocker_settings_origin');
@@ -133,4 +163,22 @@ function get_ip_ranges() {
 	}
 
 	return $ranges;
+}
+
+
+function get_all_ip_ranges() {
+
+	$ip_ranges = get_ip_ranges();
+
+	$json_ip_ranges = get_option('mh_aiblocker_settings_json_ipranges');
+
+	if( is_array($json_ip_ranges) && count($json_ip_ranges) ) {
+		foreach( $json_ip_ranges as $json_ip_range ) {
+
+			$ip_ranges = array_merge($ip_ranges, $json_ip_range['ip_ranges']);
+
+		}
+	}
+
+	return $ip_ranges;
 }

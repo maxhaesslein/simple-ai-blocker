@@ -13,7 +13,7 @@ function get_user_ip(){
 		if( ! empty($_SERVER[$origin]) ) return $_SERVER[$origin];
 	}
 
-	return $_SERVER['REMOTE_ADDR']; // default fallback
+	return $_SERVER[get_default_origin()]; // default fallback
 }
 
 
@@ -71,4 +71,55 @@ function is_ip_in_cidr_ranges($user_ip, $cidr_ranges) {
 	}
 
 	return false; // IP is not within any of the CIDR ranges
+}
+
+
+function update_url_ip_ranges( $urls = false ) {
+
+	if( ! $urls ) $urls = get_json_urls();
+
+	if( ! is_array($urls) || ! count($urls) ) return;
+
+	$ip_ranges = [];
+
+	foreach( $urls as $url ) {
+
+		$additional_ip_ranges = get_remote_ip_ranges( $url );
+
+		if( ! is_array($additional_ip_ranges) || ! count($additional_ip_ranges) ) continue;
+
+		$ip_ranges[] = [
+			'url' => $url,
+			'ip_ranges' => $additional_ip_ranges,
+		];
+
+	}
+
+	update_option( 'mh_aiblocker_settings_json_ipranges', $ip_ranges, true );
+}
+
+
+function get_remote_ip_ranges( $url ) {
+
+	$request = wp_remote_get( $url );
+
+	if( is_wp_error( $request ) ) return false;
+
+	$body = wp_remote_retrieve_body( $request );
+
+	$data = json_decode( $body, true );
+
+	if( empty( $data ) ) return false;
+	
+	if( empty($data['prefixes']) ) return false; // TODO: check, if there are any other formats we want to support
+
+	$ip_ranges = [];
+
+	foreach( $data['prefixes'] as $prefix ) {
+		// TODO: validate ipv4 range
+		// TODO: support ipv6 range
+		$ip_ranges[] = $prefix['ipv4Prefix'];
+	}
+
+	return $ip_ranges;
 }

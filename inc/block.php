@@ -12,7 +12,7 @@ function block() {
 	if( ! $blocking_active ) return;
 
 	$user_ip = get_user_ip();
-	$cidr_ranges = get_ip_ranges();
+	$cidr_ranges = get_all_ip_ranges();
 
 	if( ! is_ip_in_cidr_ranges($user_ip, $cidr_ranges) ) return;
 
