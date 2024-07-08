@@ -11,6 +11,7 @@ function add_settings_link( $links ) {
 	return $links;
 }
 add_filter( 'plugin_action_links_mh-aiblocker/mh-aiblocker.php', 'MH\AIBlocker\add_settings_link' );
+// TODO: when installing the plugin via a zip from GitHub, the folder name may be different. automatically get the foldername somehow for this filter
 
 
 function menu_item() {
