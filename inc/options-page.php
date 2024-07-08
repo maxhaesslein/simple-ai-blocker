@@ -61,7 +61,7 @@ function register_settings() {
 		function(){
 			?>
 			<label><textarea name="mh_aiblocker_settings_json" autocomplete="off" autocorrect="off" cols="40" rows="10" spellcheck="false" wrap="off"><?php echo esc_attr( get_option('mh_aiblocker_settings_json') ); ?></textarea></label>
-			<p><small>one link to an json endpoint per line.</small></p>
+			<p><small>one link to an json endpoint per line. the format of the json endpoint should be an IP prefixes list / network configuration JSON</small></p>
 			<p><a href="#" onclick="mh_aiblocker_settings_json_reset()">Reset to default</a></p>
 			<script>
 			function mh_aiblocker_settings_json_reset(){
@@ -110,7 +110,7 @@ function register_settings() {
 		function(){
 			?>
 			<label><textarea name="mh_aiblocker_settings_useragents" autocomplete="off" autocorrect="off" cols="40" rows="10" spellcheck="false" wrap="off"><?php echo esc_attr( get_option('mh_aiblocker_settings_useragents') ); ?></textarea></label>
-			<p><small>one user agent per line.</small></p>
+			<p><small>one user agent per line; case-insensitive</small></p>
 			<p><a href="#" onclick="mh_aiblocker_settings_useragents_reset()">Reset to default</a></p>
 			<script>
 			function mh_aiblocker_settings_useragents_reset(){
@@ -185,9 +185,13 @@ function options_page(){
 			?>
 		</form>
 
+<?php
+/*
 		<hr>
 		<h3>Debug Information:</h3>
-		<pre style="font-size: 10px; color: red;"><?php var_dump(get_all_ip_ranges()); ?></pre>
+		<pre style="font-size: 10px; color: red;"><?php foreach( get_all_ip_ranges() as $ip_range ) echo $ip_range."\n"; ?></pre>
+*/
+?>
 
 	</div>
 	<?php

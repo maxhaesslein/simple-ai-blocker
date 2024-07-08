@@ -8,7 +8,7 @@ if( ! defined('ABSPATH') ) exit;
 function block_ipranges() {
 
 	if( is_admin() ) return;
-	
+
 	$blocking_active = get_blocking_state();
 
 	if( ! $blocking_active ) return;
@@ -37,10 +37,11 @@ function block_useragents() {
 
 	$block = false;
 	foreach( $user_agents_to_block as $user_agent_to_block ) {
-		if( str_contains($user_agent, $user_agent_to_block) ) {
-			$block = true;
-			break;
-		}
+
+		if( stripos( $user_agent, $user_agent_to_block ) === false ) continue;
+
+		$block = true;
+		break;
 	}
 
 	if( ! $block ) return;
