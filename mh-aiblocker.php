@@ -61,3 +61,4 @@ function get_plugin_basename() {
 
 
 register_deactivation_hook( __FILE__, 'MH\AIBlocker\remove_all_cronjobs' );
+register_deactivation_hook( __FILE__, 'MH\AIBlocker\deactivate_blocking' );

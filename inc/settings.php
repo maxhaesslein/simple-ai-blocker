@@ -201,3 +201,8 @@ function get_all_ip_ranges() {
 
 	return $ip_ranges;
 }
+
+
+function deactivate_blocking(){
+	delete_option( 'mh_aiblocker_settings_active' );
+}
