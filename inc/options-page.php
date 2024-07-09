@@ -6,7 +6,7 @@ if( ! defined('ABSPATH') ) exit;
 
 
 function add_settings_link( $links ) {
-	$settings_link = '<a href="options-general.php?page=mh_aiblocker_settings">Settings</a>';
+	$settings_link = '<a href="'.esc_url(admin_url('options-general.php?page=mh_aiblocker_settings')).'">Settings</a>';
 	array_unshift( $links, $settings_link );
 	return $links;
 }
@@ -245,4 +245,25 @@ function options_page(){
 	</div>
 	<?php
 
+}
+
+
+function show_activation_message() {
+	set_transient( 'mh_aiblocker_activation_message', true, 30*MINUTE_IN_SECONDS );
+}
+
+
+// Hook to add admin notice
+add_action( 'admin_notices', 'MH\AIBlocker\activation_message' );
+
+function activation_message() {
+	if( ! get_transient( 'mh_aiblocker_activation_message' ) ) return;
+
+	?>
+	<div class="notice notice-success">
+		<p>AI Blocker is successfully installed! Go to the <a href="<?= esc_url(admin_url('options-general.php?page=mh_aiblocker_settings')) ?>">settings page</a> to activate blocking.</p>
+	</div>
+	<?php
+
+	delete_transient( 'mh_aiblocker_activation_message' );
 }
