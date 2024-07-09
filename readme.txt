@@ -11,9 +11,9 @@ Block AI Crawlers directly via their IP addresses. Currently in development, mor
 == Changelog ==
 
 = 0.1.1 =
-* blocking now defaults to inactive
+* blocking now defaults to 'inactive'
 * after plugin activation, a admin notice with a link to the settings page is shown
-* option to delete all plugin data deactivation
+* option to delete all plugin data on deactivation
 * bug fixes and enhancements
 
 = 0.1.0 =
