@@ -7,7 +7,7 @@ Copyright (C) 2024 maxhaesslein (https://www.maxhaesslein.de)
 Plugin Name: MH AI Blocker
 Plugin URI: https://github.com/maxhaesslein/mh-aiblocker
 Description: Block AI Crawlers directly via their IP addresses
-Version: 0.1.0
+Version: 0.1.1
 Author: maxhaesslein
 Author URI: https://www.maxhaesslein.de
 License: GPL v3
