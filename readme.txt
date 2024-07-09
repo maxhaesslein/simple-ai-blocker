@@ -25,3 +25,7 @@ First pre-release. This plugin is in development; there may still be bugs. Use f
 * use 'Settings - AI Blocker Settings' to configure this plugin
 * blocking happens as early as possible, to use almost no ressources if an AI crawler is detected
 * this plugin may not yet be compatible with caching plugins
+
+== Screenshots ==
+
+1. The Settings Page
