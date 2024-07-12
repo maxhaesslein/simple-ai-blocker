@@ -6,6 +6,7 @@ Tested up to: 6.5
 Requires PHP: 8.0
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Stable Tag: 0.1.2
 
 Block AI Crawlers directly via their IP addresses or user-agents.
 
