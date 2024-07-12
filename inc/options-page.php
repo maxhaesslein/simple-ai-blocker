@@ -68,15 +68,9 @@ function register_settings() {
 		__( 'JSON API Endpoints', 'simple-ai-blocker' ),
 		function(){
 			?>
-			<label><textarea name="simpleaiblocker_settings_json" autocomplete="off" autocorrect="off" cols="40" rows="10" spellcheck="false" wrap="off"><?php echo esc_attr( get_option('simpleaiblocker_settings_json') ); ?></textarea></label>
+			<label><textarea class="reset-default" name="simpleaiblocker_settings_json" autocomplete="off" autocorrect="off" cols="40" rows="10" spellcheck="false" wrap="off" placeholder="<?= get_default_json() ?>"><?php echo esc_attr( get_option('simpleaiblocker_settings_json') ); ?></textarea></label>
 			<p><small><?= __( 'one link to an json api endpoint per line; the format of the json endpoint should be an IP prefixes list', 'simple-ai-blocker' ) ?></small></p>
-			<p><a href="#" onclick="simpleaiblocker_settings_json_reset()"><?= __( 'Reset to default', 'simple-ai-blocker' ) ?></a></p>
-			<script>
-			function simpleaiblocker_settings_json_reset(){
-				var textarea = document.querySelector('textarea[name="simpleaiblocker_settings_json"]');
-				textarea.value = '<?= str_replace("\n", '\n', get_default_json()) ?>';
-			};
-			</script>
+			<p><a href="#" class="reset-default-button"><?= __( 'Reset to default', 'simple-ai-blocker' ) ?></a></p>
 			<?php
 		},
 		'simpleaiblocker_settings',
@@ -120,15 +114,9 @@ function register_settings() {
 		__( 'IP Ranges to Block', 'simple-ai-blocker' ),
 		function(){
 			?>
-			<label><textarea name="simpleaiblocker_settings_ipranges" autocomplete="off" autocorrect="off" cols="40" rows="10" spellcheck="false" wrap="off"><?php echo esc_attr( get_option('simpleaiblocker_settings_ipranges') ); ?></textarea></label>
+			<label><textarea class="reset-default" name="simpleaiblocker_settings_ipranges" autocomplete="off" autocorrect="off" cols="40" rows="10" spellcheck="false" wrap="off" placeholder="<?= get_default_ip_ranges() ?>"><?php echo esc_attr( get_option('simpleaiblocker_settings_ipranges') ); ?></textarea></label>
 			<p><small><?= __( 'one IP address per line; can be a single IP address, or a IP range in CIDR notation with suffix. IPv4 only for now.', 'simple-ai-blocker' ) ?></small></p>
-			<p><a href="#" onclick="simpleaiblocker_settings_ipranges_reset()"><?= __( 'Reset to default', 'simple-ai-blocker' ) ?></a></p>
-			<script>
-			function simpleaiblocker_settings_ipranges_reset(){
-				var textarea = document.querySelector('textarea[name="simpleaiblocker_settings_ipranges"]');
-				textarea.value = '<?= str_replace("\n", '\n', get_default_ip_ranges()) ?>';
-			};
-			</script>
+			<p><a href="#" class="reset-default-button"><?= __( 'Reset to default', 'simple-ai-blocker' ) ?></a></p>
 			<?php
 		},
 		'simpleaiblocker_settings',
@@ -144,15 +132,9 @@ function register_settings() {
 		__( 'User-Agents to Block', 'simple-ai-blocker' ),
 		function(){
 			?>
-			<label><textarea name="simpleaiblocker_settings_useragents" autocomplete="off" autocorrect="off" cols="40" rows="10" spellcheck="false" wrap="off"><?php echo esc_attr( get_option('simpleaiblocker_settings_useragents') ); ?></textarea></label>
+			<label><textarea class="reset-default" name="simpleaiblocker_settings_useragents" autocomplete="off" autocorrect="off" cols="40" rows="10" spellcheck="false" wrap="off" placeholder="<?= get_default_useragents() ?>"><?php echo esc_attr( get_option('simpleaiblocker_settings_useragents') ); ?></textarea></label>
 			<p><small><?= __( 'one user agent per line; case-insensitive', 'simple-ai-blocker' ) ?></small></p>
-			<p><a href="#" onclick="simpleaiblocker_settings_useragents_reset()"><?= __( 'Reset to default', 'simple-ai-blocker' ) ?></a></p>
-			<script>
-			function simpleaiblocker_settings_useragents_reset(){
-				var textarea = document.querySelector('textarea[name="simpleaiblocker_settings_useragents"]');
-				textarea.value = '<?= str_replace("\n", '\n', get_default_useragents()) ?>';
-			};
-			</script>
+			<p><a href="#" class="reset-default-button"><?= __( 'Reset to default', 'simple-ai-blocker' ) ?></a></p>
 			<?php
 		},
 		'simpleaiblocker_settings',
@@ -167,15 +149,9 @@ function register_settings() {
 		__( 'IP Address Server Variable', 'simple-ai-blocker' ),
 		function(){
 			?>
-			<label><input type="text" name="simpleaiblocker_settings_origin" spellcheck="false" autocomplete="off" autocorrect="off" value="<?php echo esc_attr( get_option('simpleaiblocker_settings_origin') ); ?>"></label>
+			<label><input class="reset-default" type="text" name="simpleaiblocker_settings_origin" spellcheck="false" autocomplete="off" autocorrect="off" value="<?php echo esc_attr( get_option('simpleaiblocker_settings_origin') ); ?>" placeholder="<?= get_default_origin() ?>"></label>
 			<p><small><?php printf( __( 'Specify the origins you trust in order of priority, separated by commas. You should use %1$s, because other origins can be easily faked. Examples: %2$s.', 'simple-ai-blocker' ), '<code>REMOTE_ADDR</code>', '<code>HTTP_X_FORWARDED_FOR</code>, <code>HTTP_CF_CONNECTING_IP</code>, <code>HTTP_X_SUCURI_CLIENTIP</code>'  ); ?></small></p>
-			<p><a href="#" onclick="simpleaiblocker_settings_origin_reset()"><?= __( 'Reset to default', 'simple-ai-blocker' ) ?></a></p>
-			<script>
-			function simpleaiblocker_settings_origin_reset(){
-				var input = document.querySelector('input[name="simpleaiblocker_settings_origin"]');
-				input.value = '<?= get_default_origin() ?>';
-			};
-			</script>
+			<p><a href="#" class="reset-default-button"><?= __( 'Reset to default', 'simple-ai-blocker' ) ?></a></p>
 			<?php
 		},
 		'simpleaiblocker_settings',
@@ -266,6 +242,21 @@ function options_page(){
 			submit_button();
 
 			?>
+
+			<script>
+			(function(){
+				for( var button of document.querySelectorAll('.reset-default-button') ) {
+					button.addEventListener( 'click', function(e){
+						var button = this,
+							input = button.closest('td').querySelector('.reset-default');
+						if( ! input ) return;
+						input.value = input.placeholder;
+						e.preventDefault();
+					}, false );
+				}
+			})();
+			</script>
+
 		</form>
 
 	</div>
