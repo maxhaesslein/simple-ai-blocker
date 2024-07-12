@@ -1,10 +1,15 @@
 === Simple AI Blocker ===
+Contributors: maxhaesslein
 Tags: ai, blocking
 Requires at least: 5.2
 Tested up to: 6.5
 Requires PHP: 8.0
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
+
+Block AI Crawlers directly via their IP addresses or user-agents.
+
+== Description ==
 
 Block AI Crawlers directly via their IP addresses or user-agents. The blocking happens directly on the server, and not via robots.txt, so it should also block crawlers that do not respect the robots.txt.
 
@@ -36,6 +41,12 @@ First pre-release. This plugin is in development; there may still be bugs. Use f
 * use 'Settings - AI Blocker Settings' to configure this plugin
 * blocking happens as early as possible, to use almost no ressources if an AI crawler is detected
 * this plugin may not yet be compatible with caching plugins
+
+== Installation ==
+1. Activate the plugin through the ‘Plugins’ menu in WordPress
+2. Once installed, go to the plugins setting page, activate the 'blocking active' option and save the options
+3. The 'blocking active' options gets automatically disabled when you deactivate the plugin, however, by default, all other options will persist
+4. If you want to delete all data the plugin saves in your database, activate the 'delete all plugin data on uninstall' option before uninstalling
 
 == Screenshots ==
 
