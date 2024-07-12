@@ -62,7 +62,7 @@ add_action( 'plugins_loaded', 'MH\SimpleAIBlocker\block_useragents' );
 function block_access(){
 	status_header(403);
 	nocache_headers();
-	wp_die( __("Forbidden - You don't have permission to access this file.", 'simple-ai-blocker'), __('Forbidden', 'simple-ai-blocker'), [
+	wp_die( esc_html__("Forbidden - You don't have permission to access this file.", 'simple-ai-blocker'), esc_html__('Forbidden', 'simple-ai-blocker'), [
 		'response' => 403,
 		'code' => 403
 	] );
