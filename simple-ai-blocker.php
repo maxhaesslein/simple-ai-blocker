@@ -16,7 +16,6 @@ Requires at least: 5.2
 Tested up to: 6.5
 Requires PHP: 8.0
 Text Domain: simple-ai-blocker
-Domain Path: /languages
 
 
 This program is free software: you can redistribute it and/or modify
