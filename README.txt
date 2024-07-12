@@ -1,12 +1,12 @@
 === Simple AI Blocker ===
 Contributors: maxhaesslein
-Tags: ai, blocking
+Tags: ai, blocking, ai-crawler
 Requires at least: 5.2
 Tested up to: 6.5
 Requires PHP: 8.0
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
-Stable Tag: 0.1.2
+Stable Tag: 0.2.0
 
 Block AI Crawlers directly via their IP addresses or user-agents.
 
@@ -22,6 +22,11 @@ The visitor ip address server variable can also be customized, if your site is b
 If you want to delete all data the plugin saves in your database, activate the 'delete all plugin data on uninstall' option before uninstalling.
 
 == Changelog ==
+
+= 0.2.0 =
+* first stable release
+* prepared plugin for release in WP Plugin Directory
+* code enhancements and fixes
 
 = 0.1.2 =
 * added translation options, so the plugin should now be translateable

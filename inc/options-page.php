@@ -284,13 +284,12 @@ function activation_message() {
 	if( ! get_transient( 'simpleaiblocker_activation_message' ) ) return;
 
 	/* translators: %s is a link to the settings page */
-	$text_with_placeholder = __( 'AI Blocker is successfully installed! Go to the %s to activate blocking.', 'simple-ai-blocker' );
-	$link = '<a href="'.esc_url(admin_url('options-general.php?page=simpleaiblocker_settings')).'">'.__( 'settings page', 'simple-ai-blocker' ).'</a>';
-	$text = sprintf($text_with_placeholder, $link);
+	$text_with_placeholder = esc_html__( 'AI Blocker is successfully installed! Go to the %s to activate blocking.', 'simple-ai-blocker' );
+	$link = '<a href="'.esc_url(admin_url('options-general.php?page=simpleaiblocker_settings')).'">'.esc_html__( 'settings page', 'simple-ai-blocker' ).'</a>';
 
 	?>
 	<div class="notice notice-success">
-		<p><?php echo esc_html($text); ?></p>
+		<p><?php echo sprintf($text_with_placeholder, $link); ?></p>
 	</div>
 	<?php
 
