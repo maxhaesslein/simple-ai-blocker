@@ -15,6 +15,12 @@ If you want to delete all data the plugin saves in your database, activate the '
 
 == Changelog ==
 
+= 0.1.2 =
+* added translation options, so the plugin should now be translateable
+* added additional user agents to block
+* updated texts on options page
+* code cleanup and enhancements
+
 = 0.1.1 =
 * blocking now defaults to 'inactive'
 * after plugin activation, a admin notice with a link to the settings page is shown
