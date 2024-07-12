@@ -16,7 +16,7 @@ if( ! defined('ABSPATH') ) exit;
  function add_additional_cron_schedules( $schedules ) {
 	$schedules['monthly'] = array(
 		'interval' => 2628000,
-		'display' => __( 'Once Monthly' )
+		'display' => __( 'Once Monthly', 'simple-ai-blocker' )
 	);
 	return $schedules;
 }
@@ -25,9 +25,9 @@ add_filter( 'cron_schedules', 'MH\SimpleAIBlocker\add_additional_cron_schedules'
 
 function get_allowed_json_cron_schedules() {
 	$allowed_values = [
-		'monthly' => __('Once Monthly'),
-		'weekly' => __('Once Weekly'),
-		'daily' => __('Once Daily'),
+		'monthly' => __( 'Once Monthly', 'simple-ai-blocker' ),
+		'weekly' => __( 'Once Weekly', 'simple-ai-blocker' ),
+		'daily' => __( 'Once Daily', 'simple-ai-blocker' ),
 	];
 
 	return $allowed_values;

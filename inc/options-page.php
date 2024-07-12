@@ -14,7 +14,7 @@ if( ! defined('ABSPATH') ) exit;
 
 
 function add_settings_link( $links ) {
-	$settings_link = '<a href="'.esc_url(admin_url('options-general.php?page=simpleaiblocker_settings')).'">Settings</a>';
+	$settings_link = '<a href="'.esc_url(admin_url('options-general.php?page=simpleaiblocker_settings')).'">'.__( 'Settings', 'simple-ai-blocker' ).'</a>';
 	array_unshift( $links, $settings_link );
 	return $links;
 }
@@ -25,8 +25,8 @@ function menu_item() {
 
 	add_submenu_page(
 		'options-general.php',
-		'AI Blocker Settings',
-		'AI Blocker Settings',
+		__( 'Simple AI Blocker Settings', 'simple-ai-blocker' ),
+		__( 'Simple AI Blocker', 'simple-ai-blocker' ),
 		'manage_options',
 		'simpleaiblocker_settings',
 		'MH\SimpleAIBlocker\options_page',
@@ -40,20 +40,20 @@ function register_settings() {
 
 	add_settings_section(
 		'simpleaiblocker_settings',
-		'Settings',
-		function(){ echo '<p>This plugins blocks known AI crawlers directly via their IP addresses. You can additionally use a plugin that blocks AI crawlers via a robots.txt to get more protection.</p>'; },
+		__( 'Settings', 'simple-ai-blocker' ),
+		function(){ echo '<p>'.__( 'This plugins blocks known AI crawlers directly via their IP addresses or user agents, without a robots.txt.', 'simple-ai-blocker' ).'</p>'; },
 		'simpleaiblocker_settings'
 	);
 
 	add_settings_field(
 		'simpleaiblocker_settings_active',
-		'Status',
+		__( 'Status', 'simple-ai-blocker' ),
 		function(){
 
 			$active = get_option('simpleaiblocker_settings_active');
 
 			?>
-			<label><input type="checkbox" name="simpleaiblocker_settings_active"<?php if( $active ) echo ' checked'; ?>> Blocking active</label>
+			<label><input type="checkbox" name="simpleaiblocker_settings_active"<?php if( $active ) echo ' checked'; ?>> <?= __( 'Blocking active', 'simple-ai-blocker' ) ?></label>
 			<?php
 		},
 		'simpleaiblocker_settings',
@@ -65,12 +65,12 @@ function register_settings() {
 
 	add_settings_field(
 		'simpleaiblocker_settings_json',
-		'JSON Links with IP Ranges',
+		__( 'JSON API Endpoints', 'simple-ai-blocker' ),
 		function(){
 			?>
 			<label><textarea name="simpleaiblocker_settings_json" autocomplete="off" autocorrect="off" cols="40" rows="10" spellcheck="false" wrap="off"><?php echo esc_attr( get_option('simpleaiblocker_settings_json') ); ?></textarea></label>
-			<p><small>one link to an json endpoint per line. the format of the json endpoint should be an IP prefixes list / network configuration JSON</small></p>
-			<p><a href="#" onclick="simpleaiblocker_settings_json_reset()">Reset to default</a></p>
+			<p><small><?= __( 'one link to an json api endpoint per line; the format of the json endpoint should be an IP prefixes list', 'simple-ai-blocker' ) ?></small></p>
+			<p><a href="#" onclick="simpleaiblocker_settings_json_reset()"><?= __( 'Reset to default', 'simple-ai-blocker' ) ?></a></p>
 			<script>
 			function simpleaiblocker_settings_json_reset(){
 				var textarea = document.querySelector('textarea[name="simpleaiblocker_settings_json"]');
@@ -89,7 +89,7 @@ function register_settings() {
 
 	add_settings_field(
 		'simpleaiblocker_settings_json_schedule',
-		'JSON Update Schedule',
+		__( 'JSON Update Schedule', 'simple-ai-blocker' ),
 		function(){
 			$schedule = get_option('simpleaiblocker_settings_json_schedule');
 			$allowed_schedules = get_allowed_json_cron_schedules();
@@ -104,7 +104,7 @@ function register_settings() {
 				}
 				?>
 			</select></label>
-			<p><small>automatically refresh the ip ranges from JSON links</small></p>
+			<p><small><?= __( 'automatically refresh the ip ranges from JSON links', 'simple-ai-blocker' ) ?></small></p>
 			<?php
 		},
 		'simpleaiblocker_settings',
@@ -117,12 +117,12 @@ function register_settings() {
 
 	add_settings_field(
 		'simpleaiblocker_settings_ipranges',
-		'IP Ranges to Block',
+		__( 'IP Ranges to Block', 'simple-ai-blocker' ),
 		function(){
 			?>
 			<label><textarea name="simpleaiblocker_settings_ipranges" autocomplete="off" autocorrect="off" cols="40" rows="10" spellcheck="false" wrap="off"><?php echo esc_attr( get_option('simpleaiblocker_settings_ipranges') ); ?></textarea></label>
-			<p><small>one IP address per line; can be a single IP address, or a IP range in CIDR notation with suffix. IPv4 only.</small></p>
-			<p><a href="#" onclick="simpleaiblocker_settings_ipranges_reset()">Reset to default</a></p>
+			<p><small><?= __( 'one IP address per line; can be a single IP address, or a IP range in CIDR notation with suffix. IPv4 only for now.', 'simple-ai-blocker' ) ?></small></p>
+			<p><a href="#" onclick="simpleaiblocker_settings_ipranges_reset()"><?= __( 'Reset to default', 'simple-ai-blocker' ) ?></a></p>
 			<script>
 			function simpleaiblocker_settings_ipranges_reset(){
 				var textarea = document.querySelector('textarea[name="simpleaiblocker_settings_ipranges"]');
@@ -141,12 +141,12 @@ function register_settings() {
 
 	add_settings_field(
 		'simpleaiblocker_settings_useragents',
-		'User-Agents to Block',
+		__( 'User-Agents to Block', 'simple-ai-blocker' ),
 		function(){
 			?>
 			<label><textarea name="simpleaiblocker_settings_useragents" autocomplete="off" autocorrect="off" cols="40" rows="10" spellcheck="false" wrap="off"><?php echo esc_attr( get_option('simpleaiblocker_settings_useragents') ); ?></textarea></label>
-			<p><small>one user agent per line; case-insensitive</small></p>
-			<p><a href="#" onclick="simpleaiblocker_settings_useragents_reset()">Reset to default</a></p>
+			<p><small><?= __( 'one user agent per line; case-insensitive', 'simple-ai-blocker' ) ?></small></p>
+			<p><a href="#" onclick="simpleaiblocker_settings_useragents_reset()"><?= __( 'Reset to default', 'simple-ai-blocker' ) ?></a></p>
 			<script>
 			function simpleaiblocker_settings_useragents_reset(){
 				var textarea = document.querySelector('textarea[name="simpleaiblocker_settings_useragents"]');
@@ -164,12 +164,12 @@ function register_settings() {
 
 	add_settings_field(
 		'simpleaiblocker_settings_origin',
-		'IP Address Server Variable',
+		__( 'IP Address Server Variable', 'simple-ai-blocker' ),
 		function(){
 			?>
 			<label><input type="text" name="simpleaiblocker_settings_origin" spellcheck="false" autocomplete="off" autocorrect="off" value="<?php echo esc_attr( get_option('simpleaiblocker_settings_origin') ); ?>"></label>
-			<p><small>Specify the origins you trust in order of priority, separated by commas. We strongly recommend that you do not use anything other than <code>REMOTE_ADDR</code> since other origins can be easily faked. Examples: <code>HTTP_X_FORWARDED_FOR</code>, <code>HTTP_CF_CONNECTING_IP</code>, <code>HTTP_X_SUCURI_CLIENTIP</code>. Default: <code>REMOTE_ADDR</code></small></p>
-			<p><a href="#" onclick="simpleaiblocker_settings_origin_reset()">Reset to default</a></p>
+			<p><small><?php printf( __( 'Specify the origins you trust in order of priority, separated by commas. You should use %1$s, because other origins can be easily faked. Examples: %2$s.', 'simple-ai-blocker' ), '<code>REMOTE_ADDR</code>', '<code>HTTP_X_FORWARDED_FOR</code>, <code>HTTP_CF_CONNECTING_IP</code>, <code>HTTP_X_SUCURI_CLIENTIP</code>'  ); ?></small></p>
+			<p><a href="#" onclick="simpleaiblocker_settings_origin_reset()"><?= __( 'Reset to default', 'simple-ai-blocker' ) ?></a></p>
 			<script>
 			function simpleaiblocker_settings_origin_reset(){
 				var input = document.querySelector('input[name="simpleaiblocker_settings_origin"]');
@@ -187,13 +187,13 @@ function register_settings() {
 
 	add_settings_field(
 		'simpleaiblocker_settings_deleteall',
-		'Cleanup',
+		__( 'Cleanup', 'simple-ai-blocker' ),
 		function(){
 
 			$active = get_option('simpleaiblocker_settings_deleteall');
 
 			?>
-			<label><input type="checkbox" name="simpleaiblocker_settings_deleteall"<?php if( $active ) echo ' checked'; ?>> delete all plugin data on uninstall</label>
+			<label><input type="checkbox" name="simpleaiblocker_settings_deleteall"<?php if( $active ) echo ' checked'; ?>> <?= __( 'delete all plugin data on uninstall', 'simple-ai-blocker' ) ?></label>
 			<?php
 		},
 		'simpleaiblocker_settings',
@@ -254,7 +254,7 @@ function options_page(){
 	?>
 	<div class="wrap">
 
-		<h1>Simple AI Blocker Settings</h1>
+		<h1><?= __( 'Simple AI Blocker', 'simple-ai-blocker' ) ?></h1>
 
 		<form method="post" action="<?= esc_url( admin_url('options.php') ) ?>">
 			<?php
@@ -274,22 +274,30 @@ function options_page(){
 }
 
 
+function deactivate_blocking(){
+	delete_option( 'simpleaiblocker_settings_active' );
+}
+
+
 function show_activation_message() {
 	set_transient( 'simpleaiblocker_activation_message', true, 30*MINUTE_IN_SECONDS );
 }
 
 
-// Hook to add admin notice
-add_action( 'admin_notices', 'MH\SimpleAIBlocker\activation_message' );
-
 function activation_message() {
+
 	if( ! get_transient( 'simpleaiblocker_activation_message' ) ) return;
+
+	$text_with_placeholder = __( 'AI Blocker is successfully installed! Go to the %s to activate blocking.', 'simple-ai-blocker' );
+	$link = '<a href="'.esc_url(admin_url('options-general.php?page=simpleaiblocker_settings')).'">'.__( 'settings page', 'simple-ai-blocker' ).'</a>';
+	$text = sprintf($text_with_placeholder, $link);
 
 	?>
 	<div class="notice notice-success">
-		<p>AI Blocker is successfully installed! Go to the <a href="<?= esc_url(admin_url('options-general.php?page=simpleaiblocker_settings')) ?>">settings page</a> to activate blocking.</p>
+		<p><?= $text ?></p>
 	</div>
 	<?php
 
 	delete_transient( 'simpleaiblocker_activation_message' );
 }
+add_action( 'admin_notices', 'MH\SimpleAIBlocker\activation_message' );
