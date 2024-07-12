@@ -21,17 +21,30 @@ function get_default_origin() {
 function get_default_useragents() {
 
 	$useragents = [
-		'Bytespider',
+		'AdsBot-Google',
+		'Amazonbot',
+		'anthropic-ai',
+		'Applebot-Extended',
 		'Bytedance',
-		'GPTBot',
-		'ClaudeBot',
-		'ImagesiftBot',
+		'Bytespider',
 		'CCBot',
 		'ChatGPT-User',
-		'omgili',
-		'Diffbot',
 		'Claude-Web',
+		'ClaudeBot',
+		'cohere-ai',
+		'Diffbot',
+		'FacebookBot',
+		'FriendlyCrawler',
+		'Google-Extended',
+		'GoogleOther',
+		'GPTBot',
+		'ImagesiftBot',
+		'img2dataset',
+		'omgili',
+		'omgilibot',
 		'PerplexityBot',
+		'PiplBot',
+		'YouBot',
 	];
 
 	return implode( "\n", $useragents );
