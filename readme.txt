@@ -6,7 +6,12 @@ Requires PHP: 8.0
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Block AI Crawlers directly via their IP addresses. Currently in development, more information will follow.
+Block AI Crawlers directly via their IP addresses or user-agents. The blocking happens directly on the server, and not via robots.txt, so it should also block crawlers that do not respect the robots.txt.
+
+After installation you need to activate blocking on the plugin settings page. The default settings should suffice, but you can add additional IP addresses, user agents or even JSON endpoints with lists of ip ranges.
+The visitor ip address server variable can also be customized, if your site is behind a reverse proxy and REMOTE_ADDR is not available.
+
+If you want to delete all data the plugin saves in your database, activate the 'delete all plugin data on uninstall' option before uninstalling.
 
 == Changelog ==
 

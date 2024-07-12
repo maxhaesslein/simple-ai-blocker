@@ -1,12 +1,12 @@
 <?php
 /*
 
-Simple AI Blocker - WordPress Plugin to block AI Crawlers directly via their IP addresses.
+Simple AI Blocker - WordPress Plugin to block AI Crawlers directly via their IP addresses or user agents.
 Copyright (C) 2024 maxhaesslein (https://www.maxhaesslein.de)
 
 Plugin Name: Simple AI Blocker
 Plugin URI: https://github.com/maxhaesslein/simple-ai-blocker
-Description: Block AI Crawlers directly via their IP addresses
+Description: Block AI Crawlers directly via their IP addresses or user agents.
 Version: 0.1.1
 Author: maxhaesslein
 Author URI: https://www.maxhaesslein.de
