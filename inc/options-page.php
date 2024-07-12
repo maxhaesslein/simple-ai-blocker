@@ -193,7 +193,7 @@ function register_settings() {
 			$active = get_option('mh_aiblocker_settings_deleteall');
 
 			?>
-			<label><input type="checkbox" name="mh_aiblocker_settings_deleteall"<?php if( $active ) echo ' checked'; ?>> delete all plugin data on deactivation</label>
+			<label><input type="checkbox" name="mh_aiblocker_settings_deleteall"<?php if( $active ) echo ' checked'; ?>> delete all plugin data on uninstall</label>
 			<?php
 		},
 		'mh_aiblocker_settings',
@@ -292,21 +292,4 @@ function activation_message() {
 	<?php
 
 	delete_transient( 'mh_aiblocker_activation_message' );
-}
-
-
-function reset_settings(){
-
-	$delete_all = get_option( 'mh_aiblocker_settings_deleteall' );
-
-	if( ! $delete_all ) return;
-
-	delete_option( 'mh_aiblocker_settings_active' );
-	delete_option( 'mh_aiblocker_settings_json' );
-	delete_option( 'mh_aiblocker_settings_json_schedule' );
-	delete_option( 'mh_aiblocker_settings_ipranges' );
-	delete_option( 'mh_aiblocker_settings_useragents' );
-	delete_option( 'mh_aiblocker_settings_origin' );
-	delete_option( 'mh_aiblocker_settings_deleteall' );
-
 }

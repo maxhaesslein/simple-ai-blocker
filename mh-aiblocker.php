@@ -88,4 +88,3 @@ register_activation_hook( __FILE__, 'MH\AIBlocker\show_activation_message' );
 
 register_deactivation_hook( __FILE__, 'MH\AIBlocker\remove_all_cronjobs' );
 register_deactivation_hook( __FILE__, 'MH\AIBlocker\deactivate_blocking' );
-register_deactivation_hook( __FILE__, 'MH\AIBlocker\reset_settings' );
