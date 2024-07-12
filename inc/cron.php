@@ -1,6 +1,6 @@
 <?php
 
-// This file is part of MH AI Blocker
+// This file is part of Simple AI Blocker
 // Copyright (C) 2024 maxhaesslein
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -8,7 +8,7 @@
 // (at your option) any later version.
 // See the file LICENSE.md for more details.
 
-namespace MH\AIBlocker;
+namespace MH\SimpleAIBlocker;
 
 if( ! defined('ABSPATH') ) exit;
 
@@ -20,7 +20,7 @@ if( ! defined('ABSPATH') ) exit;
 	);
 	return $schedules;
 }
-add_filter( 'cron_schedules', 'MH\AIBlocker\add_additional_cron_schedules' );
+add_filter( 'cron_schedules', 'MH\SimpleAIBlocker\add_additional_cron_schedules' );
 
 
 function get_allowed_json_cron_schedules() {
@@ -39,25 +39,25 @@ function update_cron( $new_value ) {
 
 	$allowed_values = get_allowed_json_cron_schedules();
 
-	$next_timestamp = wp_next_scheduled( 'mh_aiblocker_json_cronjob' );
+	$next_timestamp = wp_next_scheduled( 'simpleaiblocker_json_cronjob' );
 	if( $next_timestamp ) {
 		// we already have an event scheduled; remove it:
-		wp_unschedule_event( $next_timestamp, 'mh_aiblocker_json_cronjob' );
+		wp_unschedule_event( $next_timestamp, 'simpleaiblocker_json_cronjob' );
 	}
 
 	if( ! array_key_exists($new_value, $allowed_values) ) return false; // set to disabled
 
-	return wp_schedule_event( time(), $new_value, 'mh_aiblocker_json_cronjob' );
+	return wp_schedule_event( time(), $new_value, 'simpleaiblocker_json_cronjob' );
 }
 
 
 function execute_cronjob() {
 	update_url_ip_ranges();
 }
-add_action( 'mh_aiblocker_json_cronjob', 'MH\AIBlocker\execute_cronjob' );
+add_action( 'simpleaiblocker_json_cronjob', 'MH\SimpleAIBlocker\execute_cronjob' );
 
 
 function remove_all_cronjobs() {
 	// this runs on plugin deactivation and removes all pending scheduled events
-	wp_unschedule_hook( 'mh_aiblocker_json_cronjob' );
+	wp_unschedule_hook( 'simpleaiblocker_json_cronjob' );
 }

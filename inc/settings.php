@@ -1,6 +1,6 @@
 <?php
 
-// This file is part of MH AI Blocker
+// This file is part of Simple AI Blocker
 // Copyright (C) 2024 maxhaesslein
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -8,7 +8,7 @@
 // (at your option) any later version.
 // See the file LICENSE.md for more details.
 
-namespace MH\AIBlocker;
+namespace MH\SimpleAIBlocker;
 
 if( ! defined('ABSPATH') ) exit;
 
@@ -117,13 +117,13 @@ function get_default_ip_ranges() {
 
 
 function get_blocking_state(){
-	return get_option('mh_aiblocker_settings_active');
+	return get_option('simpleaiblocker_settings_active');
 }
 
 
 function get_json_urls( $string  = false ) {
 
-	if( ! $string ) $string = get_option('mh_aiblocker_settings_json');
+	if( ! $string ) $string = get_option('simpleaiblocker_settings_json');
 
 	if( ! $string ) return [];
 
@@ -148,7 +148,7 @@ function get_json_urls( $string  = false ) {
 
 function get_server_ip_origin(){
 
-	$origins = get_option('mh_aiblocker_settings_origin');
+	$origins = get_option('simpleaiblocker_settings_origin');
 
 	if( ! $origins ) return [];
 
@@ -162,7 +162,7 @@ function get_server_ip_origin(){
 
 function get_user_agents() {
 
-	$useragents = get_option('mh_aiblocker_settings_useragents');
+	$useragents = get_option('simpleaiblocker_settings_useragents');
 
 	if( ! $useragents ) return [];
 
@@ -179,7 +179,7 @@ function get_user_agents() {
 
 function get_ip_ranges() {
 
-	$settings = get_option('mh_aiblocker_settings_ipranges');
+	$settings = get_option('simpleaiblocker_settings_ipranges');
 
 	if( ! $settings ) return [];
 
@@ -210,7 +210,7 @@ function get_all_ip_ranges() {
 
 	$ip_ranges = get_ip_ranges();
 
-	$json_ip_ranges = get_option('mh_aiblocker_settings_json_ipranges');
+	$json_ip_ranges = get_option('simpleaiblocker_settings_json_ipranges');
 
 	if( is_array($json_ip_ranges) && count($json_ip_ranges) ) {
 		foreach( $json_ip_ranges as $json_ip_range ) {
@@ -225,5 +225,5 @@ function get_all_ip_ranges() {
 
 
 function deactivate_blocking(){
-	delete_option( 'mh_aiblocker_settings_active' );
+	delete_option( 'simpleaiblocker_settings_active' );
 }

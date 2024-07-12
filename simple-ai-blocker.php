@@ -1,11 +1,11 @@
 <?php
 /*
 
-MH AI Blocker - WordPress Plugin to block AI Crawlers directly via their IP addresses.
+Simple AI Blocker - WordPress Plugin to block AI Crawlers directly via their IP addresses.
 Copyright (C) 2024 maxhaesslein (https://www.maxhaesslein.de)
 
-Plugin Name: MH AI Blocker
-Plugin URI: https://github.com/maxhaesslein/mh-aiblocker
+Plugin Name: Simple AI Blocker
+Plugin URI: https://github.com/maxhaesslein/simple-ai-blocker
 Description: Block AI Crawlers directly via their IP addresses
 Version: 0.1.1
 Author: maxhaesslein
@@ -33,7 +33,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 
-namespace MH\AIBlocker;
+namespace MH\SimpleAIBlocker;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
@@ -84,7 +84,7 @@ function get_plugin_basename() {
 }
 
 
-register_activation_hook( __FILE__, 'MH\AIBlocker\show_activation_message' );
+register_activation_hook( __FILE__, 'MH\SimpleAIBlocker\show_activation_message' );
 
-register_deactivation_hook( __FILE__, 'MH\AIBlocker\remove_all_cronjobs' );
-register_deactivation_hook( __FILE__, 'MH\AIBlocker\deactivate_blocking' );
+register_deactivation_hook( __FILE__, 'MH\SimpleAIBlocker\remove_all_cronjobs' );
+register_deactivation_hook( __FILE__, 'MH\SimpleAIBlocker\deactivate_blocking' );

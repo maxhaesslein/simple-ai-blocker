@@ -1,6 +1,6 @@
 <?php
 
-// This file is part of MH AI Blocker
+// This file is part of Simple AI Blocker
 // Copyright (C) 2024 maxhaesslein
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -8,7 +8,7 @@
 // (at your option) any later version.
 // See the file LICENSE.md for more details.
 
-namespace MH\AIBlocker;
+namespace MH\SimpleAIBlocker;
 
 if( ! defined('ABSPATH') ) exit;
 
@@ -28,7 +28,7 @@ function block_ipranges() {
 
 	block_access();
 }
-add_action( 'plugins_loaded', 'MH\AIBlocker\block_ipranges' );
+add_action( 'plugins_loaded', 'MH\SimpleAIBlocker\block_ipranges' );
 
 
 function block_useragents() {
@@ -56,7 +56,7 @@ function block_useragents() {
 
 	block_access();
 }
-add_action( 'plugins_loaded', 'MH\AIBlocker\block_useragents' );
+add_action( 'plugins_loaded', 'MH\SimpleAIBlocker\block_useragents' );
 
 
 function block_access(){

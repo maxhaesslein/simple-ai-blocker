@@ -1,4 +1,4 @@
-=== MH AI Blocker ===
+=== Simple AI Blocker ===
 Tags: ai, blocking
 Requires at least: 5.2
 Tested up to: 6.5

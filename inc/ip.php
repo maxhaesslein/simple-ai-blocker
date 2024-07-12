@@ -1,6 +1,6 @@
 <?php
 
-// This file is part of MH AI Blocker
+// This file is part of Simple AI Blocker
 // Copyright (C) 2024 maxhaesslein
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -8,7 +8,7 @@
 // (at your option) any later version.
 // See the file LICENSE.md for more details.
 
-namespace MH\AIBlocker;
+namespace MH\SimpleAIBlocker;
 
 if( ! defined('ABSPATH') ) exit;
 
@@ -113,7 +113,7 @@ function update_url_ip_ranges( $urls = false ) {
 
 	}
 
-	update_option( 'mh_aiblocker_settings_json_ipranges', $ip_ranges, true );
+	update_option( 'simpleaiblocker_settings_json_ipranges', $ip_ranges, true );
 }
 
 
