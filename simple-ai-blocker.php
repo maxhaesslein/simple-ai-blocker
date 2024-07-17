@@ -13,7 +13,7 @@ Author URI: https://www.maxhaesslein.de
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Requires at least: 5.2
-Tested up to: 6.5
+Tested up to: 6.6
 Requires PHP: 8.0
 Text Domain: simple-ai-blocker
 
