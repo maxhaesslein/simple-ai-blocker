@@ -6,7 +6,7 @@ Tested up to: 6.6
 Requires PHP: 8.0
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
-Stable Tag: 0.2.0
+Stable Tag: 0.2.1
 
 Block AI Crawlers directly via their IP addresses or user-agents.
 
@@ -22,6 +22,9 @@ The visitor ip address server variable can also be customized, if your site is b
 If you want to delete all data the plugin saves in your database, activate the 'delete all plugin data on uninstall' option before uninstalling.
 
 == Changelog ==
+
+= 0.2.1 =
+* tested up to WordPress v.6.6
 
 = 0.2.0 =
 * first stable release

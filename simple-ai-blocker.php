@@ -7,7 +7,7 @@ Copyright (C) 2024 maxhaesslein (https://www.maxhaesslein.de)
 Plugin Name: Simple AI Blocker
 Plugin URI: https://github.com/maxhaesslein/simple-ai-blocker
 Description: Block AI Crawlers directly via their IP addresses or user agents.
-Version: 0.2.0
+Version: 0.2.1
 Author: maxhaesslein
 Author URI: https://www.maxhaesslein.de
 License: GPL v3
