@@ -17,7 +17,8 @@ function get_user_agent() {
 
 	if( empty($_SERVER['HTTP_USER_AGENT']) ) return false;
 
-	return $_SERVER['HTTP_USER_AGENT'];
+	$user_agent = $_SERVER['HTTP_USER_AGENT'];
+	return sanitize_text_field($user_agent);
 }
 
 
@@ -26,10 +27,14 @@ function get_user_ip(){
 	$origins = get_server_ip_origin();
 
 	foreach( $origins as $origin ) {
-		if( ! empty($_SERVER[$origin]) ) return $_SERVER[$origin];
+		if( ! empty($_SERVER[$origin]) ) {
+			$user_ip = $_SERVER[$origin];
+			return sanitize_text_field($user_ip);
+		}
 	}
 
-	return $_SERVER[get_default_origin()]; // default fallback
+	$user_ip = $_SERVER[get_default_origin()];
+	return sanitize_text_field($user_ip); // default fallback
 }
 
 
