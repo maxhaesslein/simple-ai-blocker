@@ -89,7 +89,7 @@ function register_settings() {
 			$allowed_schedules = get_allowed_json_cron_schedules();
 			?>
 			<label><select name="simpleaiblocker_settings_json_schedule">
-				<option value=""><?php esc_html_e('disabled'); ?></option>
+				<option value=""><?php esc_html_e( 'disabled', 'simple-ai-blocker' ); ?></option>
 				<?php
 				foreach( $allowed_schedules as $allowed_schedule => $allowed_schedule_title ) {
 					?>
