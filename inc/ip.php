@@ -17,8 +17,9 @@ function get_user_agent() {
 
 	if( empty($_SERVER['HTTP_USER_AGENT']) ) return false;
 
-	$user_agent = $_SERVER['HTTP_USER_AGENT'];
-	return sanitize_text_field($user_agent);
+	$user_agent = sanitize_text_field(wp_unslash($_SERVER['HTTP_USER_AGENT']));
+
+	return $user_agent;
 }
 
 
@@ -28,13 +29,15 @@ function get_user_ip(){
 
 	foreach( $origins as $origin ) {
 		if( ! empty($_SERVER[$origin]) ) {
-			$user_ip = $_SERVER[$origin];
-			return sanitize_text_field($user_ip);
+			$user_ip = sanitize_text_field(wp_unslash($_SERVER[$origin]));
+			return $user_ip;
 		}
 	}
 
-	$user_ip = $_SERVER[get_default_origin()];
-	return sanitize_text_field($user_ip); // default fallback
+	if( empty($_SERVER[get_default_origin()]) ) return false;
+
+	$user_ip = sanitize_text_field(wp_unslash($_SERVER[get_default_origin()]));
+	return $user_ip; // default fallback
 }
 
 
