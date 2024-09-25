@@ -33,6 +33,7 @@ function get_default_useragents() {
 		'ClaudeBot',
 		'cohere-ai',
 		'Diffbot',
+		'facebook.com/externalhit',
 		'FacebookBot',
 		'FriendlyCrawler',
 		'Google-Extended',
@@ -40,10 +41,12 @@ function get_default_useragents() {
 		'GPTBot',
 		'ImagesiftBot',
 		'img2dataset',
+		'mj12bot',
 		'omgili',
 		'omgilibot',
 		'PerplexityBot',
 		'PiplBot',
+		'semrushbot',
 		'YouBot',
 	];
 
