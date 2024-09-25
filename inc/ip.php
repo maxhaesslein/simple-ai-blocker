@@ -30,11 +30,18 @@ function get_user_ip(){
 	foreach( $origins as $origin ) {
 		if( ! empty($_SERVER[$origin]) ) {
 			$user_ip = sanitize_text_field(wp_unslash($_SERVER[$origin]));
+
+			if( ! filter_var( $user_ip, FILTER_VALIDATE_IP ) ) {
+				continue;
+			}
+
 			return $user_ip;
 		}
 	}
 
-	if( empty($_SERVER[get_default_origin()]) ) return false;
+	if( empty($_SERVER[get_default_origin()]) ) {
+		return false;
+	}
 
 	$user_ip = sanitize_text_field(wp_unslash($_SERVER[get_default_origin()]));
 	return $user_ip; // default fallback
