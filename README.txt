@@ -25,6 +25,7 @@ If you want to delete all data the plugin saves in your database, activate the '
 
 = 0.2.2 =
 * moved admin JavaScript to own file
+* code enhancements and fixes
 
 = 0.2.1 =
 * tested up to WordPress v.6.6
