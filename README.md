@@ -1,3 +1,5 @@
+# 'Simple AI Blocker' WordPress Plugin
+
 Block AI Crawlers directly via their IP addresses or user-agents. The blocking happens directly on the server, and not via robots.txt, so it should also block crawlers that do not respect the robots.txt.
 
 This plugin may not work if you use a caching plugin that hooks before the 'plugins_loaded' hook. I may add compatibility in a future update.
