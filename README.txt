@@ -58,7 +58,7 @@ First pre-release. This plugin is in development; there may still be bugs. Use f
 * this plugin may not yet be compatible with caching plugins
 
 == Installation ==
-1. Activate the plugin through the ‘Plugins’ menu in WordPress
+1. Install and activate the plugin through the ‘Plugins’ menu in WordPress
 2. Once installed, go to the plugins setting page, activate the 'blocking active' option and save the options
 3. The 'blocking active' options gets automatically disabled when you deactivate the plugin, however, by default, all other options will persist
 4. If you want to delete all data the plugin saves in your database, activate the 'delete all plugin data on uninstall' option before uninstalling
